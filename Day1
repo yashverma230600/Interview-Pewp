@@ -1,0 +1,225 @@
+📅 Day 1 – JVM · Arrays · SQL
+
+⏱️ Target time: 75–90 minutes
+
+1️⃣ Java — JVM, JRE, JDK & Program Execution (≈25 min)
+First, the mental model (this matters more than definitions)
+
+When you run:
+
+java Main
+
+
+You are not directly running Java code.
+
+You are doing three distinct things:
+
+Compiling Java → bytecode
+
+Loading bytecode into JVM
+
+Executing bytecode via JVM runtime
+
+JDK vs JRE vs JVM (Interview-safe explanation)
+
+JDK (Java Development Kit)
+👉 Tools for developers
+
+javac, debugger, JAR tools
+
+Includes JRE
+
+JRE (Java Runtime Environment)
+👉 What is needed to run Java
+
+JVM + core libraries
+
+No compiler
+
+JVM (Java Virtual Machine)
+👉 The engine that runs bytecode
+
+Platform-dependent
+
+Makes Java platform-independent
+
+Key interview line:
+
+“Java is platform-independent, but the JVM is platform-dependent.”
+
+Why Bytecode Exists (Important)
+
+Java compiles to bytecode, not machine code
+
+Bytecode runs on any JVM
+
+JVM translates bytecode → machine code at runtime
+
+This is why:
+
+Java is portable
+
+Performance is close to native languages (JIT)
+
+What Happens When You Run a Java Program (Step-by-step)
+
+ClassLoader
+
+Loads .class files
+
+Types:
+
+Bootstrap
+
+Extension
+
+Application
+
+Bytecode Verifier
+
+Checks:
+
+Stack safety
+
+Illegal memory access
+
+Type correctness
+
+Execution Engine
+
+Interpreter (initial)
+
+JIT compiler (hot code)
+
+JIT Compiler (Very Common Question)
+
+Compiles frequently-used bytecode into native machine code
+
+Improves performance over time
+
+Why Java apps are slow at startup but fast later?
+➡️ Because JIT optimization kicks in gradually.
+
+✅ Day 1 Java Checklist
+
+⬜ Can you explain JVM without diagrams?
+
+⬜ Can you explain JIT in one sentence?
+
+⬜ Can you explain why Java is portable?
+
+2️⃣ DSA — Arrays (≈25 min)
+What an Array Really Is
+
+An array is:
+
+A contiguous block of memory storing elements of the same type.
+
+Why Array Access is O(1)
+
+Memory address formula:
+
+address = base + (index × size_of_element)
+
+
+That’s it.
+No traversal. No loops.
+
+Static vs Dynamic Arrays
+Static	Dynamic
+Fixed size	Can grow
+Fast	Slight overhead
+Stack/Heap	Heap only
+
+In Java:
+
+int[] → static array
+
+ArrayList → dynamic array
+
+Why Resizing is Expensive
+
+When a dynamic array grows:
+
+New bigger array is created
+
+Old elements are copied
+
+Old array is discarded
+
+This is why:
+
+Resizing is O(n)
+
+But average insertion is amortized O(1)
+
+Interview Trap
+
+Q: Why not always use arrays?
+A:
+
+Fixed size
+
+Costly resizing
+
+No built-in utilities
+
+Practice (do mentally)
+
+Find max element
+
+Reverse array
+
+Check if sorted
+
+✅ Day 1 DSA Checklist
+
+⬜ Can you explain O(1) access?
+
+⬜ Can you explain amortized complexity?
+
+⬜ Do you know when arrays are a bad choice?
+
+3️⃣ SQL — SELECT, WHERE, ORDER BY (≈20 min)
+Logical Execution Order (VERY IMPORTANT)
+
+SQL does not execute top-down.
+
+Actual order:
+
+FROM
+
+WHERE
+
+SELECT
+
+ORDER BY
+
+Example
+SELECT name
+FROM users
+WHERE age > 25
+ORDER BY name;
+
+
+Filter happens before selection
+
+Sorting happens last
+
+WHERE vs ORDER BY
+
+WHERE → filters rows
+
+ORDER BY → sorts result
+
+Interview Trap
+
+Q: Why can’t we use column alias in WHERE?
+A:
+Because WHERE runs before SELECT, alias doesn’t exist yet.
+
+Performance Insight
+
+Filtering early (WHERE) reduces data
+
+Sorting is expensive
